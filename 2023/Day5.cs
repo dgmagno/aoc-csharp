@@ -91,16 +91,16 @@ namespace aoc
         }
 
         static List<SeedRange> CreateSeedRanges(long[] seeds)
+        {
+            var seedRanges = new List<SeedRange>();
+
+            for (int i = 0; i < seeds.Length - 1; i += 2)
             {
-                var seedRanges = new List<SeedRange>();
-
-                for (int i = 0; i < seeds.Length - 1; i += 2)
-                {
-                    seedRanges.Add(new SeedRange(seeds[i], seeds[i + 1]));
-                }
-
-                return seedRanges;
+                seedRanges.Add(new SeedRange(seeds[i], seeds[i + 1]));
             }
+
+            return seedRanges;
+        }
 
         private static long FindSeed(IEnumerable<IEnumerable<Map>> groupedMaps, IEnumerable<SeedRange> seedRanges)
         {
