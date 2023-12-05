@@ -1,4 +1,5 @@
 ﻿using aoc;
+using System.Diagnostics;
 
 //TODO: improve this
 
@@ -10,5 +11,12 @@ var puzzle = (IPuzzle)Activator.CreateInstance(Type.GetType($"aoc.Day{day}")!)!;
 
 puzzle.Example();
 
-Console.WriteLine(puzzle.Part1(input));
-Console.WriteLine(puzzle.Part2(input));
+var timer = Stopwatch.StartNew();
+
+var part1 = puzzle.Part1(input);
+Console.WriteLine($"[{timer.Elapsed}] Part 1: {part1}");
+
+timer.Restart();
+
+var part2 = puzzle.Part2(input);
+Console.Write($"[{timer.Elapsed}] Part 2: {part2}");

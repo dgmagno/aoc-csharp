@@ -55,12 +55,12 @@ namespace aoc
                 }
                 else
                 {
-                    lists.Add([.. maps]);
+                    lists.Add([.. maps ]);
                     maps = [];
                 }
             }
 
-            lists.Add([.. maps]);
+            lists.Add([.. maps ]);
             
             return [.. lists];
         }
