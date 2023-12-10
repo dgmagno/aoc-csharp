@@ -60,7 +60,6 @@ namespace aoc
                 .ToArray();
         }
 
-
         public void Example()
         {
             var example =
