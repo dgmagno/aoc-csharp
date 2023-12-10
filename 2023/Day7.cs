@@ -42,35 +42,21 @@ namespace aoc
         {
             var jokers = hand.Value.Count(it => it == joker);
 
-            var lists = hand.Value
+            var groupCounts = hand.Value
                 .Where(it => it != joker)
                 .GroupBy(it => it)
                 .Select(it => it.Count())
                 .OrderDescending()
                 .ToList();
 
-            return lists switch
+            var firstCount = groupCounts.FirstOrDefault();
+            var length = groupCounts.Count;
+
+            return length switch
             {
-                [] when jokers == 5 => CamelType.Five,
-                [1] when jokers == 4 => CamelType.Five,
-                [2] when jokers == 3 => CamelType.Five,
-                [1, 1] when jokers == 3 => CamelType.Four,
-                [3] when jokers == 2 => CamelType.Five,
-                [2, 1] when jokers == 2 => CamelType.Four,
-                [1, 1, 1] when jokers == 2 => CamelType.Three,
-                [4] when jokers == 1 => CamelType.Five,
-                [3, 1] when jokers == 1 => CamelType.Four,
-                [2, 1, 1] when jokers == 1 => CamelType.Three,
-                [2, 2] when jokers == 1 => CamelType.FulHouse,
-                [1, 1, 1, 1] when jokers == 1 => CamelType.One,
-                [5] => CamelType.Five,
-                [4, 1] => CamelType.Four,
-                [3, 2] => CamelType.FulHouse,
-                [3, 1, 1] => CamelType.Three,
-                [2, 2, 1] => CamelType.Two,
-                [2, 1, 1, 1] => CamelType.One,
-                [1, 1, 1, 1, 1] => CamelType.Zero,
-                _ => throw new NotImplementedException(),
+                3 => (CamelType)(firstCount + jokers),
+                4 or 5 => (CamelType)(firstCount + jokers - 1),
+                _ => (CamelType)(firstCount + jokers + 1)
             };
         }
 
